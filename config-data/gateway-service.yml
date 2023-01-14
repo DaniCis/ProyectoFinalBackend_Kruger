@@ -21,6 +21,8 @@ spring:
           uri: lb://customer-service
           predicates: 
             - Path=/customer/**
+          filters:
+            - AuthFilter
         - id: payment-service
           uri: lb://payment-service
           predicates: 
