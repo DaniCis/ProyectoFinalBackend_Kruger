@@ -11,14 +11,3 @@ eureka:
     instance:
       hostname: localhost
 
-spring:
-  cloud:
-    gateway:
-      discovery:
-        locator:
-          enabled: true
-      routes:
-        - id: payment-service
-          uri: lb://payment-service
-          predicates: 
-            - Path=/payment/**
