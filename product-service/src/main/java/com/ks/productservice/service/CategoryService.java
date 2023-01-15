@@ -1,9 +1,9 @@
 package com.ks.productservice.service;
 
 import com.ks.productservice.entity.Category;
-import com.ks.productservice.entity.Product;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CategoryService {
 
@@ -11,5 +11,5 @@ public interface CategoryService {
     Category save(Category category);
     public void delete(Long id);
     public List<Category> findByNombre(String term);
-    public Category findCategoryByid(Long id);
+    public Optional<Category> findCategoryByid(Long id);
 }

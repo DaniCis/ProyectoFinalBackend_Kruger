@@ -43,7 +43,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Optional<Product> findProductoByid(Long id) {
-
         return  productRepository.findById(id);
     }
 }

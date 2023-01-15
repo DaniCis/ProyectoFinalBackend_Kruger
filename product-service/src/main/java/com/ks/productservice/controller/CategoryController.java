@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/category")
@@ -26,8 +27,8 @@ public class CategoryController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Category> getById(@PathVariable("id") Long id){
-        Category category = categoryService.findCategoryByid(id);
+    public ResponseEntity<Optional<Category>> getById(@PathVariable("id") Long id){
+        Optional<Category> category = categoryService.findCategoryByid(id);
         if(category==null)
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(category);
@@ -36,6 +37,7 @@ public class CategoryController {
 
     @PostMapping()
     public ResponseEntity<Category> save(@RequestBody Category category){
+
         Category categoryNew = categoryService.save(category);
         return ResponseEntity.ok(categoryNew);
     }
