@@ -1,5 +1,6 @@
 package com.ks.productservice.controller;
 
+import com.ks.productservice.entity.Category;
 import com.ks.productservice.entity.Product;
 import com.ks.productservice.service.CategoryService;
 import com.ks.productservice.service.ProductService;
@@ -38,12 +39,32 @@ public class ProductController {
 
     @PostMapping()
     public ResponseEntity<Product> save(@RequestBody Product product){
-        categoryService.save(product.getCategory());
+
+       Optional< Category> category= categoryService.findCategoryByid(product.getCategory().getId());
+
+        product.setCategory(category.get());
         Product productNew = productService.save(product);
         return ResponseEntity.ok(productNew);
     }
 
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Product> update(@RequestBody Product product,@PathVariable("id") Long id ){
+        Optional< Category> category= categoryService.findCategoryByid(product.getCategory().getId());
+        Product product1= productService.findProductoByid(id).get();
+        product1.setCategory(category.get());
+        product1.setName(product.getName());
+        product1.setDescription(product.getDescription());
+        product1.setPrice(product.getPrice());
+        product1.setQuantity(product.getQuantity());
+        product1.setStatus(product.isStatus());
+        Product productNew = productService.save(product1);
+        return ResponseEntity.ok(productNew);
+    }
 
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = "application/json")
+    public void delete(@PathVariable Long id) {
+        productService.delete(id);
+    }
 
 
 }
