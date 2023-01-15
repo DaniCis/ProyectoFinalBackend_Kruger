@@ -38,7 +38,6 @@ public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> 
                         t.getToken();
                         return exchange;
                     }).flatMap(chain::filter);
-
         }));
     }
 

@@ -29,12 +29,13 @@ public class JwtProvider {
         claims.put("id", authUser.getId());
         Date now = new Date();
         Date exp = new Date( now.getTime() + 3600000); //una hora
-        return Jwts.builder()
+        String token = Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(now)
                 .setExpiration(exp)
-                .signWith(SignatureAlgorithm.HS256, secret)
+                .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
+        return  token;
     }
 
     public boolean validateToken(String token){
