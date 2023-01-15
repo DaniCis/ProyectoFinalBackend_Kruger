@@ -41,7 +41,7 @@ public class Order {
 	@Column(name="ShipmentAddres", nullable = false,length = 100)
     private String ShipmentAddres;
 	@Column(name="Shipmentdate", nullable = false,length = 100)
-    private String Shipmentdate;
+    private Date Shipmentdate;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created", nullable = false, updatable = false)

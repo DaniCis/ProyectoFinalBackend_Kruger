@@ -31,7 +31,7 @@ public class Orderitem {
 	@Column(name="product", nullable = false)
     private double product;
 	@Column(name="quantity", nullable = false,length = 100)
-    private String quantity;
+    private Integer quantity;
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created", nullable = false, updatable = false)
 	private Date created;
