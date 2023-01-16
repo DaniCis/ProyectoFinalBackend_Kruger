@@ -3,6 +3,7 @@ package com.kruger.app.model;
 
 
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -50,21 +51,39 @@ public class Order {
 	@Column(name = "created",  updatable = false)
 	private Date created;
 	
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "card_id")
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Cart cart;
+    @JoinColumn(name = "cart_id")
+    private Cart cartId;
 	
 	@OneToOne(mappedBy="order")
 	private Orderitem orderitem;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "payment_id")
-	private Payment payment;
+	@JsonIgnore
+	@OneToMany(mappedBy="orderId",  fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Payment> payment;
+
+
 	
 	@PrePersist
 	private void onCreate(){
 		created = new Date();
 	    }
+
+	public Order( double totalPrice, String status, String shipmentAddres, Date shipmentdate, Date created,
+			Cart cartId, Orderitem orderitem, Payment paymentId) {
+		this.totalPrice = totalPrice;
+		this.status = status;
+		ShipmentAddres = shipmentAddres;
+		Shipmentdate = shipmentdate;
+		this.created = created;
+		this.cartId = cartId;
+		this.orderitem = orderitem;
+	}
+
+	
+
+
+	
+	
 }

@@ -27,10 +27,10 @@ public class Category implements Serializable {
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false,length = 100)
+
     private String name;
 
-    @Column(name = "description", nullable = false,length = 100)
+  
     private String description;
 
     @Temporal(TemporalType.DATE)
@@ -38,7 +38,7 @@ public class Category implements Serializable {
     private Date createAt;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private Set<Product> products;
 
 
