@@ -1,15 +1,15 @@
 package com.kruger.app.model;
 
 import java.util.Date;
+import java.util.UUID;
 
-import jakarta.persistence.Column;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -18,33 +18,26 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "Orderitem")
+@Table(name="payments")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Orderitem {
-	
-	@Id
+public class Payment {
+
+    public Payment(String status, UUID payPallPaymentId, Date created, Order order) {
+        this.status = status;
+        this.payPallPaymentId = payPallPaymentId;
+        this.created = created;
+    }
+    
+    @Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-    @Column(name="id")
     private int id;
-	@Column(name="product", nullable = false)
-    private double product;
-	@Column(name="quantity", nullable = false,length = 100)
-    private Integer quantity;
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "created", nullable = false, updatable = false)
-	private Date created;
-	
-	@OneToOne
-	@JoinColumn(name="order_id")
-	private Order order;
+    private String status;
+    private UUID payPallPaymentId;
 
+    @Temporal(TemporalType.DATE)
+    private Date created;
 
-	@PrePersist
-	private void onCreate(){
-		created = new Date();
-	    }
-
-
+    
 }
