@@ -39,6 +39,3 @@ spring:
           uri: lb://product-service
           predicates:
             - Path=/product/**
-          filters:
-            - AuthFilter
-     
