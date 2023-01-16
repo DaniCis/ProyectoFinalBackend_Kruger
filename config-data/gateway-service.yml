@@ -44,7 +44,17 @@ spring:
         - id: product-service
           uri: lb://product-service
           predicates:
-            - Path=/product/**, /category/**, /review/**
+            - Path=/product/**
           filters:
             - AuthFilter
+        - id: product-service
+          uri: lb://product-service
+          predicates:
+            - Path=/category/**
+          filters:
+            - AuthFilter
+        - id: product-service
+          uri: lb://product-service
+          predicates:
+            - Path=/review/**
       
