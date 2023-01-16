@@ -4,16 +4,15 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-<<<<<<< HEAD
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-=======
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
->>>>>>> 0814aa1bce31559d59b6ce1b8e712abd5125e6ac
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -21,11 +20,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-<<<<<<< HEAD
+
 import jakarta.persistence.ManyToOne;
-=======
+
 import jakarta.persistence.OneToMany;
->>>>>>> 0814aa1bce31559d59b6ce1b8e712abd5125e6ac
+
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
@@ -56,6 +55,7 @@ public class Orderitem implements Serializable{
 	@Column(name = "created", nullable = false, updatable = false)
 	private Date created;
 	
+
 	//@JsonIgnore
 	//@JsonBackReference
 	//@ManyToOne(fetch = FetchType.LAZY)
@@ -63,6 +63,9 @@ public class Orderitem implements Serializable{
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private int order_id;
 
+	@JsonIgnore
+	@OneToOne
+	private Order orderItems;
 
 	@PrePersist
 	private void onCreate(){

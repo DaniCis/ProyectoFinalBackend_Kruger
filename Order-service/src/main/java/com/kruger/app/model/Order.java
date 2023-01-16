@@ -54,37 +54,23 @@ public class Order implements Serializable{
 	@Column(name = "created",  updatable = false)
 	private Date created;
 	
-<<<<<<< HEAD
-	//@JsonIgnore
-	//@ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "card_id")
-	// @JsonBackReference
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private int card_id;
-	
-	
-	@OneToMany(mappedBy="order_id")
-	private List<Orderitem> orderitem;
-	
-	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "payment_id")
-	private Payment payment;
-=======
+
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JoinColumn(name = "cart_id")
     private Cart cartId;
 	
-	@OneToOne(mappedBy="order")
-	private Orderitem orderitem;
+	@OneToOne
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@JoinColumn(name = "orderItems")
+	private Orderitem orderItems;
+
 
 	@JsonIgnore
 	@OneToMany(mappedBy="orderId",  fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Payment> payment;
 
 
->>>>>>> 0814aa1bce31559d59b6ce1b8e712abd5125e6ac
 	
 	@PrePersist
 	private void onCreate(){
@@ -99,7 +85,6 @@ public class Order implements Serializable{
 		Shipmentdate = shipmentdate;
 		this.created = created;
 		this.cartId = cartId;
-		this.orderitem = orderitem;
 	}
 
 	
