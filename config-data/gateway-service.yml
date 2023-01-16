@@ -35,21 +35,10 @@ spring:
           uri: lb://auth-service
           predicates: 
             - Path=/auth/**
-        - id: product-service
+      - id: product-service
           uri: lb://product-service
           predicates:
             - Path=/product/**
             - Path=/category/**
             - Path=/review/**
-<<<<<<< HEAD
-        - id: Order-service
-          uri: lb://Order-service
-          predicates:
-          - Path=/cart/**
-          - Path=/order/**
-          - Path=/orderitem/**
-=======
-          filters:
-            - AuthFilter
-          
->>>>>>> 0814aa1bce31559d59b6ce1b8e712abd5125e6ac
+     
