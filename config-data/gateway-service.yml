@@ -27,6 +27,10 @@ spring:
           uri: lb://payment-service
           predicates: 
             - Path=/payment/**
+        - id: order-service
+          uri: lb://order-service
+          predicates: 
+            - Path=/order/**
         - id: auth-service
           uri: lb://auth-service
           predicates: 
@@ -37,9 +41,15 @@ spring:
             - Path=/product/**
             - Path=/category/**
             - Path=/review/**
+<<<<<<< HEAD
         - id: Order-service
           uri: lb://Order-service
           predicates:
           - Path=/cart/**
           - Path=/order/**
           - Path=/orderitem/**
+=======
+          filters:
+            - AuthFilter
+          
+>>>>>>> 0814aa1bce31559d59b6ce1b8e712abd5125e6ac

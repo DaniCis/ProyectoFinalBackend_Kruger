@@ -27,7 +27,6 @@ public class AuthUserController {
 
     @PostMapping("/validate")
     public ResponseEntity<TokenDto> validate(@RequestParam String token, @RequestBody RequestDto dto){
-        //String [] temp = token.split(" ");
         TokenDto tokenDto = authUserService.validate(token,dto);
         if(tokenDto == null)
             return ResponseEntity.badRequest().build();

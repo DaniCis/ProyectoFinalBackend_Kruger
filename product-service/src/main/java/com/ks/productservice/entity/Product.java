@@ -30,22 +30,22 @@ public class Product  implements Serializable {
     private Long id;
 
 
-    @Column(name = "name", nullable = false,length = 100)
+    
     private String name;
 
-    @Column(name = "description", nullable = false,length = 100)
+
     private String description;
 
-    @Column(name = "price", nullable = false,length = 100)
+
     private double price;
 
-    @Column(name = "quantity", nullable = false,length = 100)
+    
     private Integer quantity;
 
-    @Column(name = "status", nullable = false,length = 100)
+    
     private boolean status;
 
-    @Column(name = "sales_counter", nullable = false,length = 100)
+    
     private Integer salesCounter;
 
 

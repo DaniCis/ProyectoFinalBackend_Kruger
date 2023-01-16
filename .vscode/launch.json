@@ -44,7 +44,8 @@
             "mainClass": "com.kruger.gatewayservice.GatewayServiceApplication",
             "projectName": "gateway-service",
             "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=1041 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=gateway-service"
         },
         {
             "type": "java",
@@ -56,6 +57,27 @@
             "args": "",
             "envFile": "${workspaceFolder}/.env",
             "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=4742 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=Order-service"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-AuthServiceApplication<auth-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.kruger.authserver.AuthServiceApplication",
+            "projectName": "auth-service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-PaymentApplication<payment>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.payment.service.payment.PaymentApplication",
+            "projectName": "payment",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
