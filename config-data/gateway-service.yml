@@ -35,10 +35,12 @@ spring:
           uri: lb://auth-service
           predicates: 
             - Path=/auth/**
-      - id: product-service
+        - id: product-service
           uri: lb://product-service
           predicates:
             - Path=/product/**
             - Path=/category/**
             - Path=/review/**
+          filters:
+            - AuthFilter
      
