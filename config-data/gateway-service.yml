@@ -48,7 +48,7 @@ spring:
         - id: product-service
           uri: lb://product-service
           predicates:
-            - Path=/product/**,
+            - Path=/product/**
           filters:
             - AuthFilter
         - id: product-service
