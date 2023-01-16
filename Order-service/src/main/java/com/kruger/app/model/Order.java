@@ -56,8 +56,11 @@ public class Order {
     @JoinColumn(name = "cart_id")
     private Cart cartId;
 	
-	@OneToOne(mappedBy="order")
-	private Orderitem orderitem;
+	@OneToOne
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@JoinColumn(name = "orderItems")
+	private Orderitem orderItems;
+
 
 	@JsonIgnore
 	@OneToMany(mappedBy="orderId",  fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -78,7 +81,6 @@ public class Order {
 		Shipmentdate = shipmentdate;
 		this.created = created;
 		this.cartId = cartId;
-		this.orderitem = orderitem;
 	}
 
 	

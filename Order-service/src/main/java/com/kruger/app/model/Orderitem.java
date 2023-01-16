@@ -42,9 +42,9 @@ public class Orderitem {
 	@Column(name = "created", nullable = false, updatable = false)
 	private Date created;
 	
+	@JsonIgnore
 	@OneToOne
-	@JoinColumn(name="order_id")
-	private Order order;
+	private Order orderItems;
 
 
 	@PrePersist

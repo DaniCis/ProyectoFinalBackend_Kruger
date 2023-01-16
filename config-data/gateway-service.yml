@@ -21,16 +21,22 @@ spring:
           uri: lb://customer-service
           predicates: 
             - Path=/customer/**
-          filters:
-            - AuthFilter
-        - id: payment-service
-          uri: lb://payment-service
-          predicates: 
-            - Path=/payment/**
         - id: order-service
           uri: lb://order-service
           predicates: 
             - Path=/order/**
+        - id: order-service
+          uri: lb://order-service
+          predicates: 
+            - Path=/cart/**
+        - id: order-service
+          uri: lb://order-service
+          predicates: 
+            - Path=/orderitem/**
+        - id: order-service
+          uri: lb://order-service
+          predicates: 
+            - Path=/payment/**
         - id: auth-service
           uri: lb://auth-service
           predicates: 
@@ -39,8 +45,15 @@ spring:
           uri: lb://product-service
           predicates:
             - Path=/product/**
-            - Path=/category/**
-            - Path=/review/**
           filters:
             - AuthFilter
-          
+        - id: product-service
+          uri: lb://product-service
+          predicates:
+            - Path=/category/**
+          filters:
+            - AuthFilter
+        - id: product-service
+          uri: lb://product-service
+          predicates:
+            - Path=/review/**
