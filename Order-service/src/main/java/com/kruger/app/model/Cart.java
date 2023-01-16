@@ -1,11 +1,14 @@
 package com.kruger.app.model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -28,7 +31,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Cart {
+public class Cart implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
     @Column(name="id")
@@ -36,12 +41,14 @@ public class Cart {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created", nullable = false, updatable = false)
 	private Date created;
-	@JsonIgnore
-	@OneToMany(mappedBy="cart",  fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	//@JsonIgnore
+	//@JsonManagedReference
+	@OneToMany(mappedBy="card_id",  fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Order> order;
 	
 	@PrePersist
 	private void onCreate(){
 		created = new Date();
 	    }
+	
 }

@@ -2,7 +2,10 @@ package com.kruger.app.model;
 
 
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -31,8 +34,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Order {
-
+public class Order implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
     @Column(name="id")
@@ -50,15 +54,18 @@ public class Order {
 	@Column(name = "created",  updatable = false)
 	private Date created;
 	
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "card_id")
+	//@JsonIgnore
+	//@ManyToOne(fetch = FetchType.LAZY)
+    //@JoinColumn(name = "card_id")
+	// @JsonBackReference
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Cart cart;
+    private int card_id;
 	
-	@OneToOne(mappedBy="order")
-	private Orderitem orderitem;
-
+	
+	@OneToMany(mappedBy="order_id")
+	private List<Orderitem> orderitem;
+	
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "payment_id")
 	private Payment payment;

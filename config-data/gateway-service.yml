@@ -37,3 +37,9 @@ spring:
             - Path=/product/**
             - Path=/category/**
             - Path=/review/**
+        - id: Order-service
+          uri: lb://Order-service
+          predicates:
+          - Path=/cart/**
+          - Path=/order/**
+          - Path=/orderitem/**
