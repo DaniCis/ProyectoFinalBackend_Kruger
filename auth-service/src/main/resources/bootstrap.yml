@@ -8,3 +8,30 @@ spring:
 
 jwt:
   secret: secret
+
+admin-paths:
+  paths:
+    -
+      uri: "/product"
+      method: "GET"
+    -
+      uri: "/product"
+      method: "POST"
+    -
+      uri: "/product/update/{1}[1-9]+[0-9]*"
+      method: "PUT"
+    -
+      uri: "/product/delete/{1}[1-9]+[0-9]*"
+      method: "DELETE"
+    -
+      uri: "/product/{1}[1-9]+[0-9]*"
+      method: "GET"
+    -
+      uri: "/category"
+      method: "GET"
+    -
+      uri: "/category"
+      method: "POST"
+    -
+      uri: "/category/{1}[1-9]+[0-9]*"
+      method: "GET"

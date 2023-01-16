@@ -1,6 +1,8 @@
 package com.kruger.authserver.service;
 
 import com.kruger.authserver.dto.AuthUserDto;
+import com.kruger.authserver.dto.NewUserDto;
+import com.kruger.authserver.dto.RequestDto;
 import com.kruger.authserver.dto.TokenDto;
 import com.kruger.authserver.entity.AuthUser;
 import com.kruger.authserver.repository.AuthUserRepository;
@@ -22,7 +24,7 @@ public class AuthUserService {
     @Autowired
     JwtProvider jwtProvider;
 
-    public AuthUser save(AuthUserDto dto){
+    public AuthUser save(NewUserDto dto){
         Optional<AuthUser> user = authUserRepository.findByUsername(dto.getUsername());
         if(user.isPresent())
             return null;
@@ -31,6 +33,7 @@ public class AuthUserService {
         AuthUser authUser = AuthUser.builder()
                 .username(dto.getUsername())
                 .password(password)
+                .role(dto.getRole())
                 .build();
 
         return authUserRepository.save(authUser);
@@ -45,8 +48,8 @@ public class AuthUserService {
         return null;
     }
 
-    public TokenDto validate(String token){
-        if(!jwtProvider.validateToken(token))
+    public TokenDto validate(String token, RequestDto dto){
+        if(!jwtProvider.validateToken(token, dto))
             return null;
         String username = jwtProvider.getUserNameFromToken(token);
         if(!authUserRepository.findByUsername(username).isPresent())
